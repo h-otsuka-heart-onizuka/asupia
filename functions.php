@@ -46,6 +46,20 @@ if ( $my_lightning_additional_css ) {
  * 独自の処理を必要に応じて書き足します
  */
 
+
+/**
+ * 独自JavaScriptファイルの読み込み
+ */
+function lightning_child_enqueue_scripts () {
+	wp_enqueue_script(
+		'main-script',
+		get_stylesheet_directory_uri() . '/assets/js/asupia.js',
+		array(),
+		null
+	);
+};
+add_action('wp_enqueue_scripts', 'lightning_child_enqueue_scripts');
+
 // ロゴの横に電話番号とボタンを表示
 function my_lightning_header_logo_after() {
 	echo <<<EOM
@@ -55,7 +69,3 @@ function my_lightning_header_logo_after() {
 	EOM;
 }
 add_action('lightning_header_logo_after', 'my_lightning_header_logo_after');
-
-/**
- * 重要なお知らせの判定と表示
- */
